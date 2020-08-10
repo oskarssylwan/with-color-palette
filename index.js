@@ -30,8 +30,8 @@ const calculateTopOffset = ({ nrOfSwatches, swatchSize, swatchSpacing }) => ({ h
 
 const createCompositeImage = options => metadata => (swatch, swatchIndex) => ({
   input: { create: swatch },
-  top: calculateTopOffset(options)(metadata)(swatchIndex),
-  left: (metadata.width / 2) - (options.swatchSize / 2)
+  top: Math.floor(calculateTopOffset(options)(metadata)(swatchIndex)),
+  left: Math.floor((metadata.width / 2) - (options.swatchSize / 2))
 })
 
 const withColorPalette = (imgPath, userOptions) => {
@@ -42,13 +42,10 @@ const withColorPalette = (imgPath, userOptions) => {
     .then(([image, metadata, swatches]) => image
       .composite(map(createCompositeImage(options)(metadata))(swatches))
       .toFile(`${options.outputName}.${metadata.format}`, err => { err && console.log(err) })
-    )
+    ).catch(console.log)
 
 }
 
-// withColorPalette('input.png')
-sharp('input.png')
-  .resize({ width: 400 })
-  .toFile('input-small.png')
+withColorPalette('20200803-DSCF1453.jpg')
 
 module.exports = { withColorPalette }
