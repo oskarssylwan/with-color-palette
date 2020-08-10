@@ -8,7 +8,7 @@ const defaultOptions = {
   swatchSize: 100,
   swatchSpacing: 25,
   direction: 'vertical',
-  outputName: 'output'
+  outputSuffix: '-output'
 }
 
 const createSwatch = ({ swatchSize }) => ([r, g, b]) => ({
@@ -37,15 +37,16 @@ const createCompositeImage = options => metadata => (swatch, swatchIndex) => ({
 const withColorPalette = (imgPath, userOptions) => {
   const options = { ...defaultOptions , ...userOptions }
   const image = sharp(imgPath)
+  const imgName = imgPath.replace(/\..*$/, '');
 
   Promise.all([image, image.metadata(), getColorSwatches(options)(imgPath)])
-    .then(([image, metadata, swatches]) => image
-      .composite(map(createCompositeImage(options)(metadata))(swatches))
-      .toFile(`${options.outputName}.${metadata.format}`, err => { err && console.log(err) })
+    .then(([image, metadata, swatches]) => {
+      return image
+        .composite(map(createCompositeImage(options)(metadata))(swatches))
+        .toFile(`${imgName}${options.outputSuffix}.${metadata.format}`, err => { err && console.log(err) })
+    }
     ).catch(console.log)
 
 }
-
-withColorPalette('20200803-DSCF1453.jpg')
 
 module.exports = { withColorPalette }

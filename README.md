@@ -23,7 +23,7 @@ withColorPalette('input.png', {
   nrOfSwatches: 5,
   swatchSize: 100,
   swatchSpacing: 25,
-  outputName: 'output'
+  outputSuffix: '-output'
 })
 ```
 
@@ -33,4 +33,4 @@ withColorPalette('input.png', {
 
 **swatchSpacing** - The distance between the drawn swatches on the output image in pixels
 
-**outputName** - The name of the output file. withColorPalette() vill add the same filetype as the input image.
+**outputSuffix** - The suffix that will be added to the output file. withColorPalette() vill add the same filetype as the input image.
