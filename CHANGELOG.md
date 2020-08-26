@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 3.0.0
+
+### Features
+- withColorPalette can now take a directory path as first argument to process every image in that directory
+- you can now call the function through the CLI with cli arguments
+
 ## Version 2.0.0
 
 ### Bug fixes
