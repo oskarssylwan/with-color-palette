@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 3.0.4
+
+### Documentation
+- Updatet documentation to reflect changes
+
 ## Version 3.0.3
 
 ### Bug fixes

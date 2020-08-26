@@ -17,8 +17,8 @@ withColorPalette('./images')
 ```
 ### Cli
 ```
-npx with-color-palette --path ./input.png
-npx with-color-palette --path ./images
+npx with-color-palette --path ~/Desktop/input.png
+npx with-color-palette --path ~/Desktop/images
 ```
 
 ### Additional options
