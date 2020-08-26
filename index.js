@@ -1,7 +1,13 @@
 const sharp = require('sharp')
 const ColorThief = require('colorthief')
+const path = require('path')
+const fs = require('fs')
 
 const map = fn => arr => arr.map(fn)
+const isSupportedFileType = file =>
+  file.endsWith('.jpg')
+  || file.endsWith('.jpeg')
+  || file.endsWith('.png')
 
 const defaultOptions = {
   nrOfSwatches: 5,
@@ -34,10 +40,10 @@ const createCompositeImage = options => metadata => (swatch, swatchIndex) => ({
   left: Math.floor((metadata.width / 2) - (options.swatchSize / 2))
 })
 
-const withColorPalette = (imgPath, userOptions) => {
+const imageWithColorPalette = (imgPath, userOptions) => {
   const options = { ...defaultOptions , ...userOptions }
   const image = sharp(imgPath)
-  const imgName = imgPath.replace(/\..*$/, '');
+  const imgName = imgPath.replace(/(\.jpg|\.jpeg|\.png)/, '')
 
   Promise.all([image, image.metadata(), getColorSwatches(options)(imgPath)])
     .then(([image, metadata, swatches]) => {
@@ -46,7 +52,27 @@ const withColorPalette = (imgPath, userOptions) => {
         .toFile(`${imgName}${options.outputSuffix}.${metadata.format}`, err => { err && console.log(err) })
     }
     ).catch(console.log)
-
 }
+
+const dirWithColorPalette = (dir, options) => {
+  const absoluteDirectoryPath = path.join(__dirname, dir)
+  fs.readdir(absoluteDirectoryPath, (err, files) => {
+    if (err) return console.log('Unable to scan directory: ' + err);
+
+    files
+      .filter(isSupportedFileType)
+      .forEach(file => {
+        imageWithColorPalette(path.join(dir, file), options)
+      });
+});
+}
+
+const withColorPalette = (dir, options) => {
+  isSupportedFileType(dir)
+    ? imageWithColorPalette(dir, options)
+    : dirWithColorPalette(dir, options)
+}
+
+withColorPalette('./test/story-20191204-DSCF3653.jpg', { swatchSpacing: 50 })
 
 module.exports = { withColorPalette }

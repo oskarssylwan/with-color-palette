@@ -11,8 +11,8 @@ npm i with-color-palette
 const { withColorPalette } = require('with-color-palette')
 
 withColorPalette('input.png')
+withColorPalette('./images')
 ```
-
 
 ### Additional options
 withColorPalette takes an options object as a second parameter.
@@ -34,3 +34,7 @@ withColorPalette('input.png', {
 **swatchSpacing** - The distance between the drawn swatches on the output image in pixels
 
 **outputSuffix** - The suffix that will be added to the output file. withColorPalette() vill add the same filetype as the input image.
+
+### Supported file types
+- jpg / jpeg
+- png
