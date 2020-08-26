@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { withColorPalette } = require('./index.js')
 const cliArgs = require('minimist')(process.argv.slice(2))
 
