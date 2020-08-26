@@ -4,6 +4,8 @@ withColorPalette is a function that extracts a color palette from an input image
 and renders those colors on the image.
 
 ## Usage
+
+### Node
 ```
 npm i with-color-palette
 ```
@@ -12,6 +14,11 @@ const { withColorPalette } = require('with-color-palette')
 
 withColorPalette('input.png')
 withColorPalette('./images')
+```
+### Cli
+```
+npx with-color-palette --path ./input.png
+npx with-color-palette --path ./images
 ```
 
 ### Additional options
@@ -25,6 +32,9 @@ withColorPalette('input.png', {
   swatchSpacing: 25,
   outputSuffix: '-output'
 })
+```
+```
+npx with-color-palette --path ./input.png --nrOfSwatches 5 --swatchSize 100 --swatchSpacing 25
 ```
 
 **nrOfSwatches** - The number of swatches drawn on the output image.

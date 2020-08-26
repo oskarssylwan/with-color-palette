@@ -2,6 +2,7 @@ const sharp = require('sharp')
 const ColorThief = require('colorthief')
 const path = require('path')
 const fs = require('fs')
+const cliArgs = require('minimist')(process.argv.slice(2));
 
 const map = fn => arr => arr.map(fn)
 const isSupportedFileType = file =>
@@ -73,6 +74,6 @@ const withColorPalette = (dir, options) => {
     : dirWithColorPalette(dir, options)
 }
 
-withColorPalette('./test/story-20191204-DSCF3653.jpg', { swatchSpacing: 50 })
+if (cliArgs.path) { withColorPalette(cliArgs.path, cliArgs) }
 
 module.exports = { withColorPalette }
