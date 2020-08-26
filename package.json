@@ -12,5 +12,8 @@
     "colorthief": "^2.3.0",
     "minimist": "^1.2.5",
     "sharp": "^0.24.1"
+  },
+  "bin": {
+    "with-color-palette": "cli.js"
   }
 }
