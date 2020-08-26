@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 3.0.3
+
+### Bug fixes
+- ClI --path now takes an absolute path
+
 ## Version 3.0.2
 
 ### Bug fixes
