@@ -1,5 +1,10 @@
 # Changelog
 
+## Version 3.0.2
+
+### Bug fixes
+- you can now call the function through the CLI with cli arguments (yes I test in prod)
+
 ## Version 3.0.1
 
 ### Bug fixes
