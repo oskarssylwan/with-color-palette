@@ -45,6 +45,8 @@ npx with-color-palette --path ./input.png --nrOfSwatches 5 --swatchSize 100 --sw
 
 **outputSuffix** - The suffix that will be added to the output file. withColorPalette() vill add the same filetype as the input image.
 
+**path** - The absolute path if run through CLI. The relative if supplied as first argument to withColorPalette()
+
 ### Supported file types
 - jpg / jpeg
 - png

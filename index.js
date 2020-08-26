@@ -64,7 +64,19 @@ const dirWithColorPalette = (dir, options) => {
       .forEach(file => {
         imageWithColorPalette(path.join(dir, file), options)
       });
-});
+  });
+}
+
+const dirAbsoluteWithColorPalette = (dir, options) => {
+  fs.readdir(dir, (err, files) => {
+    if (err) return console.log('Unable to scan directory: ' + err);
+
+    files
+      .filter(isSupportedFileType)
+      .forEach(file => {
+        imageWithColorPalette(path.join(dir, file), options)
+      });
+  });
 }
 
 const withColorPalette = (dir, options) => {
@@ -73,4 +85,4 @@ const withColorPalette = (dir, options) => {
     : dirWithColorPalette(dir, options)
 }
 
-module.exports = { withColorPalette }
+module.exports = { withColorPalette, dirAbsoluteWithColorPalette }
