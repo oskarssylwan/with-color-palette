@@ -11,7 +11,7 @@
   "dependencies": {
     "colorthief": "^2.3.0",
     "minimist": "^1.2.5",
-    "sharp": "^0.24.1"
+    "sharp": "^0.30.5"
   },
   "bin": {
     "with-color-palette": "cli.js"
